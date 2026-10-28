@@ -1,0 +1,12 @@
+# Requerimientos para Control 1: Procesamiento Digital de Imágenes (PDI)
+# Librerías científicas y de imágenes médicas
+numpy>=1.23.0
+matplotlib>=3.6.0
+pillow>=9.0.0
+pydicom>=2.3.0
+nibabel>=4.0.0
+scipy>=1.9.0
+
+# Soporte para Jupyter Notebooks y VS Code
+ipykernel>=6.20.0
+

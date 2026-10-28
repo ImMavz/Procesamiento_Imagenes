@@ -5,6 +5,7 @@ y celdas de Código ejecutables cumpliendo al 100% las 4 skills y las restriccio
 """
 
 import json
+import os
 
 def create_notebook():
     cells = []
@@ -1206,13 +1207,20 @@ def create_notebook():
         "nbformat_minor": 5
     }
 
-    with open("/home/joseph-herrera/Documentos/Procesamiento_Imagenes/control1/notebooks/Control_1_PDI.ipynb", "w", encoding="utf-8") as f:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    notebooks_dir = os.path.join(base_dir, "notebooks")
+    os.makedirs(notebooks_dir, exist_ok=True)
+
+    ruta_pdi = os.path.join(notebooks_dir, "Control_1_PDI.ipynb")
+    ruta_prueba1 = os.path.join(notebooks_dir, "prueba1.ipynb")
+
+    with open(ruta_pdi, "w", encoding="utf-8") as f:
         json.dump(notebook, f, indent=1, ensure_ascii=False)
         
-    with open("/home/joseph-herrera/Documentos/Procesamiento_Imagenes/control1/notebooks/prueba1.ipynb", "w", encoding="utf-8") as f:
+    with open(ruta_prueba1, "w", encoding="utf-8") as f:
         json.dump(notebook, f, indent=1, ensure_ascii=False)
 
-    print("✅ Notebooks generados con éxito: Control_1_PDI.ipynb y prueba1.ipynb")
+    print("[OK] Notebooks generados con exito: Control_1_PDI.ipynb y prueba1.ipynb")
 
 if __name__ == "__main__":
     create_notebook()
