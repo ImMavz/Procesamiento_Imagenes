@@ -1,7 +1,7 @@
 # Control 1: Procesamiento Digital de Imágenes (PDI)
 **Ponderación:** 50% de la Calificación Final  
 **Especialidad:** Visión por Computador e Imágenes Médicas (DICOM/NIfTI)  
-**Autor:** Joseph Herrera  
+**Autores:** Joseph Herrera Libreros, Juan David Cuellar López, Samuel Escobar Rivera y Kevin Alexis Lorza.s
 
 ---
 
