@@ -44,11 +44,11 @@ def aplicar_sobel(imagen_suavizada: np.ndarray, recuperar_bordes: bool = True) -
     Gy = convolucion(img, Kv, recuperar_bordes=recuperar_bordes)
     
     # Magnitud euclidiana del vector gradiente
-    magnitud = np.sqrt(Gx ** 2 + Gy ** 2)
+    magnitud = np.floor(np.sqrt(Gx ** 2 + Gy ** 2))
     
     # Dirección angular del gradiente (ortogonal al borde)
     direccion_rad = np.arctan2(Gy, Gx)
-    direccion_deg = np.degrees(direccion_rad)
+    direccion_deg = np.mod(np.degrees(direccion_rad) + 360.0, 360.0)
     
     return {
         'Gx': Gx,
