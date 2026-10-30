@@ -99,17 +99,23 @@ def convertir_tac_a_hu(raw_array: np.ndarray, rescale_slope: float, rescale_inte
 def anonimizar_dicom(dcm_dataset: pydicom.FileDataset) -> pydicom.FileDataset:
     """
     Protocolo de Desidentificación Clínica según norma HIPAA / DICOM PS 3.15.
-    Limpia etiquetas con información de salud protegida (PHI) asignándoles cadena vacía ""
-    para cumplir rigurosamente con los Value Representations (VR) de DICOM (DA, AS, PN, etc.).
+    Limpia ÚNICAMENTE identificadores personales sensibles del paciente asignándoles
+    comillas vacías "" para cumplir rigurosamente con los Value Representations (VR) de DICOM.
+    
+    REGLAS DEL PROFESOR:
+    - NO borrar InstitutionName (nombre del hospital/IPS).
+    - NO borrar Manufacturer (fabricante del tomógrafo/resonador).
+    - NO borrar PatientAge (edad conservada para estudios demográficos y epidemiológicos).
+    - Borrar SOLO datos personales directos: PatientName, PatientID, PatientBirthDate,
+      PatientAddress, PatientTelephoneNumbers, etc.
     """
     dcm_anon = dcm_dataset.copy()
     
     tags_sensibles = [
-        'PatientName', 'PatientID', 'PatientBirthDate', 'PatientSex',
-        'PatientAge', 'PatientWeight', 'PatientAddress', 'InstitutionName',
-        'InstitutionalDepartmentName', 'ReferringPhysicianName',
-        'PerformingPhysicianName', 'OperatorsName', 'StudyID',
-        'AccessionNumber', 'OtherPatientIDs'
+        'PatientName', 'PatientID', 'PatientBirthDate', 'PatientAddress',
+        'PatientTelephoneNumbers', 'OtherPatientIDs', 'PatientMotherBirthName',
+        'EthnicGroup', 'PatientSex', 'PatientWeight', 'ReferringPhysicianName',
+        'PerformingPhysicianName', 'OperatorsName', 'StudyID', 'AccessionNumber'
     ]
     
     for tag in tags_sensibles:
